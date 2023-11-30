@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/toDoDetayFragmentFragment"
-        android:name="com.bunyaminozturk.todolist.ui.fragment.ToDoDetayFragmentFragment"
+        android:name="com.bunyaminozturk.todolist.ui.fragment.ToDoDetayFragment"
         android:label="fragment_to_do_detay_fragment"
-        tools:layout="@layout/fragment_to_do_detay_fragment" >
+        tools:layout="@layout/fragment_to_do_detay" >
         <argument
             android:name="todo"
             app:argType="com.bunyaminozturk.todolist.data.entity.Todos" />

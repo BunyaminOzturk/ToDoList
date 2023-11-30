@@ -10,30 +10,37 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bunyaminozturk.todolist.R
-import com.bunyaminozturk.todolist.databinding.FragmentToDoKayitBinding
+import com.bunyaminozturk.todolist.databinding.FragmentToDoDetayBinding
 import com.bunyaminozturk.todolist.ui.viewmodel.TodoDetayViewModel
 import com.bunyaminozturk.todolist.ui.viewmodel.TodoKayitViewModel
 
-class ToDoKayitFragment : Fragment() {
-    private lateinit var binding: FragmentToDoKayitBinding
-    private lateinit var viewModel: TodoKayitViewModel
+class ToDoDetayFragment : Fragment() {
+    private lateinit var binding: FragmentToDoDetayBinding
+    private lateinit var viewModel: TodoDetayViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_do_kayit, container, false)
-        binding.todoKayitFragment = this
-        binding.todoKayitToolbarBaslik = "New Todo"
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_to_do_detay, container, false)
+        binding.todoDetayFragment = this
+        binding.todoDetayToolbarBaslik = "Todo Details"
+
+
+        val bundle: ToDoDetayFragmentArgs by navArgs()
+        val gelenTodo = bundle.todo
+        binding.todoNesnesi = gelenTodo
+
+
         return binding.root
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tempViewModel: TodoKayitViewModel by viewModels()
+        val tempViewModel: TodoDetayViewModel by viewModels()
         viewModel = tempViewModel
     }
 
-    fun buttonKaydet(todo_ad: String, todo_aciklama: String) {
-        viewModel.kaydet(todo_ad, todo_aciklama)
+    fun buttonGuncelle(todo_id: Int, todo_ad: String, todo_aciklama: String, todo_done:Boolean) {
+        viewModel.guncelle(todo_id, todo_ad, todo_aciklama, todo_done)
     }
+
 
 }
