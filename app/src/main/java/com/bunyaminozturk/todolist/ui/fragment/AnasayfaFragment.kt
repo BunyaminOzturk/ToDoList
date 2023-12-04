@@ -18,7 +18,9 @@ import com.bunyaminozturk.todolist.databinding.FragmentAnasayfaBinding
 import com.bunyaminozturk.todolist.ui.adapter.TodosAdapter
 import com.bunyaminozturk.todolist.ui.viewmodel.AnasayfaViewModel
 import com.bunyaminozturk.todolist.ui.viewmodel.TodoKayitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AnasayfaFragment : Fragment() {
 
     private lateinit var binding: FragmentAnasayfaBinding

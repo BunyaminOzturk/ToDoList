@@ -13,7 +13,9 @@ import com.bunyaminozturk.todolist.R
 import com.bunyaminozturk.todolist.databinding.FragmentToDoKayitBinding
 import com.bunyaminozturk.todolist.ui.viewmodel.TodoDetayViewModel
 import com.bunyaminozturk.todolist.ui.viewmodel.TodoKayitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ToDoKayitFragment : Fragment() {
     private lateinit var binding: FragmentToDoKayitBinding
     private lateinit var viewModel: TodoKayitViewModel

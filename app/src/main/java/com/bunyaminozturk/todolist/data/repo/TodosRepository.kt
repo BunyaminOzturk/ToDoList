@@ -4,8 +4,8 @@ import android.util.Log
 import com.bunyaminozturk.todolist.data.datasource.TodosDataSource
 import com.bunyaminozturk.todolist.data.entity.Todos
 
-class TodosRepository {
-    var tds = TodosDataSource()
+class TodosRepository(var tds:TodosDataSource) {
+
     suspend fun kaydet(todo_ad: String, todo_aciklama: String) = tds.kaydet(todo_ad, todo_aciklama)
     suspend fun guncelle(
         todo_id: Int,
