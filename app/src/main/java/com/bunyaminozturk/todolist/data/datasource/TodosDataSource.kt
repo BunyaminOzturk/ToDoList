@@ -2,25 +2,14 @@ package com.bunyaminozturk.todolist.data.datasource
 
 import android.util.Log
 import com.bunyaminozturk.todolist.data.entity.Todos
+import com.bunyaminozturk.todolist.room.TodosDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class TodosDataSource {
+class TodosDataSource(var tdao:TodosDao) {
     suspend fun todosYukle(): List<Todos> =
         withContext(Dispatchers.IO) {
-            val todosListesi = ArrayList<Todos>()
-            val td1 = Todos(
-                1,
-                false,
-                "Todo 1 Title",
-                "Todo 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
-            )
-            val td2 = Todos(2, false, "Todo 2 Title Long title", "Todo 2 paragraph")
-            val td3 = Todos(3, true, "Todo 3", "Todo 3 Todo 3")
-            todosListesi.add(td1)
-            todosListesi.add(td2)
-            todosListesi.add(td3)
-            return@withContext todosListesi
+            return@withContext tdao.todosYukle()
         }
 
     suspend fun ara(aramaKelimesi: String): List<Todos> =
@@ -28,10 +17,9 @@ class TodosDataSource {
             val todosListesi = ArrayList<Todos>()
             val td1 = Todos(
                 1,
-                false,
                 "Todo 1 Title",
-                "Todo 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
-            )
+                "Todo 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                false )
             todosListesi.add(td1)
             return@withContext todosListesi
         }
