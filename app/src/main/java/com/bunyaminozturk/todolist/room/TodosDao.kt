@@ -1,6 +1,7 @@
 package com.bunyaminozturk.todolist.room
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import com.bunyaminozturk.todolist.data.entity.Todos
 
@@ -8,4 +9,7 @@ import com.bunyaminozturk.todolist.data.entity.Todos
 interface TodosDao {
     @Query("SELECT * FROM todos")
     suspend fun todosYukle(): List<Todos>
+
+    @Insert
+    suspend fun kaydet(todos: Todos)
 }

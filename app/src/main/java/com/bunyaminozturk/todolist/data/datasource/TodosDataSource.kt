@@ -25,7 +25,8 @@ class TodosDataSource(var tdao:TodosDao) {
         }
 
     suspend fun kaydet(todo_ad: String, todo_aciklama: String) {
-        Log.e("Todo Kaydet", "$todo_ad - $todo_aciklama ")
+        val yeniTodo = Todos(0,todo_ad, todo_aciklama, false)
+        tdao.kaydet(yeniTodo)
     }
 
     suspend fun guncelle(todo_id: Int, todo_ad: String, todo_aciklama: String, todo_done: Boolean) {
