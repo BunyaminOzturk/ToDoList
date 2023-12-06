@@ -14,14 +14,7 @@ class TodosDataSource(var tdao:TodosDao) {
 
     suspend fun ara(aramaKelimesi: String): List<Todos> =
         withContext(Dispatchers.IO) {
-            val todosListesi = ArrayList<Todos>()
-            val td1 = Todos(
-                1,
-                "Todo 1 Title",
-                "Todo 1 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                false )
-            todosListesi.add(td1)
-            return@withContext todosListesi
+            return@withContext tdao.ara(aramaKelimesi)
         }
 
     suspend fun kaydet(todo_ad: String, todo_aciklama: String) {
@@ -30,10 +23,12 @@ class TodosDataSource(var tdao:TodosDao) {
     }
 
     suspend fun guncelle(todo_id: Int, todo_ad: String, todo_aciklama: String, todo_done: Boolean) {
-        Log.e("Todo Güncelle", "$todo_id - $todo_ad - $todo_aciklama - $todo_done")
+        val guncellenenTodo = Todos(todo_id,todo_ad, todo_aciklama, todo_done)
+        tdao.guncelle(guncellenenTodo)
     }
 
     suspend fun sil(todo_id: Int) {
-        Log.e("Todo sil", todo_id.toString())
+        val silinenTodo = Todos(todo_id, "", "", false)
+        tdao.sil(silinenTodo)
     }
 }
